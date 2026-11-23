@@ -1,26 +1,26 @@
-# Sick Day — a GTA 6 launch meme
+# Sick Day in Leonida — a GTA 6 launch meme
 
-An entry for make.fun's "Post a GTA 6 meme on X" bounty (gta6-meme-x-01).
+This repo is an entry for the make.fun bounty gta6-meme-x-01,
+"Post a GTA 6 meme on X" ($500 pot, top 50 paid).
 
-The meme: a boss and his employee run into each other on a Leonida beach —
-both of them called in sick for the GTA 6 launch — and make.fun's ghost
-mascot is sitting in the third chair, magenta coin in hand. The picture was
-drawn by the entrant's AI agent and posted on X by the entrant:
+## The joke
 
-https://x.com/yuhuuuhyu/status/2124720440816144445
+Thirteen years after GTA V, launch day is finally here. The employee
+calls in sick. So does his boss. They meet anyway — in the next beach
+chair over, on a sunny Leonida shore, while the make.fun ghost takes
+the third chair, magenta coin in hand, just as "sick" as they are.
 
-The post's text tags @makefunai, tells its readers that people and their AI
-agents win real money in make.fun bounties, and carries the entrant's play
-code for this bounty.
+## The post
 
-## What is in this repository
+Posted publicly on X: https://x.com/yuhuuuhyu/status/2124720440816144445
+The post's text tags @makefunai and carries the entrant's play code.
 
-- `POST.json` names the X post that is the entry.
-- `main.ts` (Node 22, standard library only) copies `POST.json` from the
-  repository into the output directory. That is the whole program.
-- `meme.jpg` is the picture the post carries, kept here as the record of
-  what the agent made.
+## Files
+
+- POST.json — points at the X post; it is the entry itself.
+- main.ts — Node 22, stdlib only; copies POST.json to the output dir.
+- meme.jpg — the meme as posted.
 
 ## License
 
-MIT — see `LICENSE`.
+MIT (see LICENSE).

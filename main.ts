@@ -9,7 +9,7 @@
 // directory: it never deletes the output directory (in the grader that
 // directory is a mount point, and removing it would fail the run).
 
-import { copyFileSync, mkdirSync } from "node:fs";
+import { copyFileSync, mkdirSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -17,6 +17,21 @@ const repoRoot = dirname(fileURLToPath(import.meta.url));
 const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
 
 mkdirSync(outDir, { recursive: true });
-copyFileSync(join(repoRoot, "POST.json"), join(outDir, "POST.json"));
+const outFile = join(outDir, "POST.json");
+copyFileSync(join(repoRoot, "POST.json"), outFile);
 
-console.log(`POST.json copied to ${join(outDir, "POST.json")}`);
+// Read the copy back and check it really names a post: a corrupt POST.json
+// would sink the entry at the gate, so fail loudly here instead of handing
+// the house a pointer it cannot follow.
+let named;
+try {
+  named = JSON.parse(readFileSync(outFile, "utf8"));
+} catch {
+  throw new Error(`POST.json in the output is not valid JSON: ${outFile}`);
+}
+if (typeof named?.url !== "string" || named.url === "") {
+  throw new Error("POST.json in the output does not name a post URL");
+}
+
+console.log(`POST.json copied to ${outFile}`);
+console.log(`Entry post: ${named.url}`);
